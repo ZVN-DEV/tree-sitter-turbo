@@ -1,0 +1,162 @@
+================
+Hello World
+================
+
+fn main() {
+    print("Hello, world!")
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (block
+      (expression_statement
+        (call_expression
+          function: (identifier)
+          (string
+            (string_content)))))))
+
+================
+Let Bindings
+================
+
+fn main() {
+    let x = 42
+    let mut y = 0
+    let name: str = "turbo"
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (block
+      (let_declaration
+        name: (identifier)
+        value: (integer))
+      (let_declaration
+        name: (identifier)
+        value: (integer))
+      (let_declaration
+        name: (identifier)
+        type: (primitive_type)
+        value: (string
+          (string_content))))))
+
+================
+If-Else Expression
+================
+
+fn main() {
+    if x > 0 {
+        print(x)
+    } else {
+        print(0)
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (block
+      (if_expression
+        condition: (binary_expression
+          left: (identifier)
+          right: (integer))
+        consequence: (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (identifier))))
+        alternative: (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (integer))))))))
+
+================
+Function with Parameters
+================
+
+fn add(a: i64, b: i64) -> i64 {
+    a + b
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_list
+      (parameter
+        name: (identifier)
+        type: (primitive_type))
+      (parameter
+        name: (identifier)
+        type: (primitive_type)))
+    return_type: (primitive_type)
+    body: (block
+      (expression_statement
+        (binary_expression
+          left: (identifier)
+          right: (identifier))))))
+
+================
+While Loop
+================
+
+fn main() {
+    let mut i = 0
+    while i < 10 {
+        i += 1
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    parameters: (parameter_list)
+    body: (block
+      (let_declaration
+        name: (identifier)
+        value: (integer))
+      (while_expression
+        condition: (binary_expression
+          left: (identifier)
+          right: (integer))
+        body: (block
+          (assignment_statement
+            left: (identifier)
+            operator: "+="
+            right: (integer)))))))
+
+================
+Struct Definition
+================
+
+struct User {
+    name: str
+    age: u32
+}
+
+---
+
+(source_file
+  (struct_definition
+    name: (type_identifier)
+    (struct_field
+      name: (identifier)
+      type: (primitive_type))
+    (struct_field
+      name: (identifier)
+      type: (primitive_type))))
