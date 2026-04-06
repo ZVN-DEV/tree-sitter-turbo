@@ -41,6 +41,26 @@ module.exports = grammar({
         $.impl_block,
         $.const_declaration,
         $.import_statement,
+        $.extern_block,
+      ),
+
+    // --- Extern C FFI block ---
+    extern_block: ($) =>
+      seq(
+        $.attribute, // @unsafe
+        "extern",
+        $.string,
+        "{",
+        repeat($.extern_fn_signature),
+        "}",
+      ),
+
+    extern_fn_signature: ($) =>
+      seq(
+        "fn",
+        field("name", $.identifier),
+        field("parameters", $.parameter_list),
+        optional(seq("->", field("return_type", $._type))),
       ),
 
     // --- Comments ---

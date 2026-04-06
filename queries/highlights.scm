@@ -24,7 +24,12 @@
   "defer"
   "new"
   "free"
+  "extern"
 ] @keyword
+
+; Extern C FFI
+(extern_block) @keyword
+(extern_fn_signature name: (identifier) @function)
 
 ; Operators
 [
